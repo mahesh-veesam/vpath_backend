@@ -82,7 +82,7 @@ app.use(express.json())
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
   clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: "https://vpath-testing.onrender.com/auth/google/callback",
+  callbackURL: "https://vpath.onrender.com/auth/google/callback",
   scope : ["profile","email"],
 },
 

@@ -58,11 +58,9 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 const allowedOrigins = [
-  "http://localhost:5173",
-  "https://vpath-testing.netlify.app",
   "https://vpath.netlify.app",
   "https://vpath.vercel.app",
-  "http://192.168.1.37:5173"
+  "http://192.168.1.35:5173"
 ];
 
 app.use(cors({
@@ -133,8 +131,10 @@ app.use((req,res,next)=>{
 
 const courses = require("./routes/courses.js")
 const auth = require("./routes/auth.js")
+const users = require("./routes/user.js")
 app.use("/courses", courses)
 app.use("/auth", auth)
+app.use("/users",users)
 
 app.use((req, res,next) => {
   res.redirect("/")

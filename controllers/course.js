@@ -126,7 +126,10 @@ const uploadRoute = wrapAsync(async (req, res, next) => {
     await course.save();
     console.log("Course saved in DB:", course);
 
-    res.send('OK');
+    res.status(200).json({
+      success: true,
+      message: "File uploaded successfully!",
+    });
 });
 
 const updateEdit = wrapAsync(async (req, res) => {

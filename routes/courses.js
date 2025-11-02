@@ -11,7 +11,7 @@ const PDFDocument = require('pdfkit');
 const fs = require("fs")
 const path = require("path")
 
-const {homeRoute , uploadRoute, updateEdit, deleteRoute} = require("../controllers/course.js")
+const {homeRoute , uploadRoute, updateEdit, deleteRoute , getRecentCourses} = require("../controllers/course.js")
 
 
 const tempStorage = multer.diskStorage({
@@ -37,6 +37,8 @@ const upload = multer({dest : "uploads/"})
 
 //index route
 router.get('/', homeRoute);
+
+router.get("/recent",getRecentCourses);
 
 router.get('/:code',wrapAsync(async(req,res)=>{
   if(req.user){

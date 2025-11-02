@@ -60,7 +60,7 @@ app.use(passport.session())
 const allowedOrigins = [
   "https://vpath.netlify.app",
   "https://vpath.vercel.app",
-  "http://192.168.1.35:5173"
+  "http://192.168.1.36:5173"
 ];
 
 app.use(cors({

@@ -39,6 +39,20 @@ const homeRoute = wrapAsync(async (req, res) => {
   res.status(200).json(courses);
 });
 
+const getRecentCourses = wrapAsync(async (req,res)=>{
+    const days = Number(req.query.days) || 10;
+    const since = new Date(Date.now() - days * 24 * 60 * 60 * 1000);
+    
+    const data = await Course.aggregate([
+      { $match: { uploadedAt : { $gte: since } } },
+      { $sort: { uploadedAt: -1 } },
+      { $group: { _id: "$code", title: { $first: "$title" } } },
+      { $project: { _id: 0, code: "$_id", title: 1 } }
+    ]);
+
+    res.status(200).json(data);
+})
+
 const uploadRoute = wrapAsync(async (req, res, next) => {
     console.log("🚀 Upload route hit");
     console.log(req.user._id)
@@ -179,6 +193,7 @@ const deleteRoute = wrapAsync(async (req,res)=>{
 
 module.exports = {
     homeRoute,
+    getRecentCourses,
     uploadRoute,
     updateEdit,
     deleteRoute

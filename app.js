@@ -88,7 +88,7 @@ async (accessToken, refreshToken, profile, done) => {
   const email = profile.emails[0].value;
   console.log("here")
 
-  if (email.endsWith('@vitapstudent.ac.in')) {
+  if (email.endsWith('@vitapstudent.ac.in') || email === "harsha.456x@gmail.com") {
     const user = await User.findOne({ googleId: profile.id });
     
     if (user) {

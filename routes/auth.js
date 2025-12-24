@@ -37,12 +37,18 @@ router.post("/logout", (req, res, next) => {
 });
 
 router.get("/checkAuth", (req, res) => {
-  try {
-    res.status(200).json(req.user); 
-  } catch (error) {
-    console.log("Error in checkAuth controller", error.message);
-    res.status(500).json({ message: "Internal Server Error" });
+  if (!req.isAuthenticated || !req.isAuthenticated()) {
+    return res.status(401).json({ message: "Not authenticated" });
   }
+
+  res.status(200).json({user : {
+    user: {
+      id: req.user._id,
+      name: req.user.displayName,
+      email: req.user.email,
+      fullName : req.user.name
+    },  
+  }});
 });
 
 module.exports = router;

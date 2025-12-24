@@ -13,15 +13,15 @@ router.get('/google',
 router.get('/google/callback', 
   passport.authenticate('google', { failureRedirect: 'https://vpath.netlify.app/home' }),
   async(req, res) => {
-    const userData = {  
-      name  : req.user.displayName,
-      email : req.user.email,
-      id : req.user._id,
-      fullName : req.user.name
-    }
-    console.log(userData)
-    const encodedUser = encodeURIComponent(JSON.stringify(userData))
-    res.redirect(`https://vpath.netlify.app?user=${encodedUser}`);
+    // const userData = {  
+    //   name  : req.user.displayName,
+    //   email : req.user.email,
+    //   id : req.user._id,
+    //   fullName : req.user.name
+    // }
+    // console.log(userData)
+    // const encodedUser = encodeURIComponent(JSON.stringify(userData))
+    res.redirect(`https://vpath.netlify.app`);
   }
 );
 

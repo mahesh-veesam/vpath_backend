@@ -41,14 +41,14 @@ router.get("/checkAuth", (req, res) => {
     return res.status(401).json({ message: "Not authenticated" });
   }
 
-  res.status(200).json({user : {
+  res.status(200).json({
     user: {
       id: req.user._id,
       name: req.user.displayName,
       email: req.user.email,
       fullName : req.user.name
     },  
-  }});
+  });
 });
 
 module.exports = router;
